@@ -1,0 +1,312 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adarsh — Designer, Visual Thinker, Pixel Mechanic</title>
+  <meta name="description" content="Portfolio — Adarsh. Minimal, modern single-page portfolio." />
+  <style>
+    /* Reset + base */
+    :root{
+      --bg:#0b0b0b; /* near black */
+      --fg:#ffffff;
+      --muted:#cfcfcf;
+      --accent: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.03);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--fg);background:var(--bg);-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }/* subtle animated gradient background */
+.bg-anim{
+  position:fixed;inset:0;z-index:-1;opacity:0.6;pointer-events:none;
+  background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+  animation: drift 20s linear infinite;
+}
+@keyframes drift{
+  0%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(20px) rotate(1deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
+
+/* Container */
+.wrap{max-width:var(--max-width);margin:0 auto;padding:48px 24px}
+
+/* Hero */
+header.hero{min-height:72vh;display:grid;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
+.hero-title{font-weight:700;font-size:clamp(28px,5vw,44px);margin:0 0 12px}
+.hero-sub{color:var(--muted);margin:0 0 24px;font-size:clamp(14px,2.4vw,18px)}
+.cta-row{display:flex;gap:12px;align-items:center}
+
+/* SVG button style */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:transparent;color:var(--fg);cursor:pointer;text-decoration:none;font-weight:600
+}
+.btn svg{width:18px;height:18px;display:block}
+.ghost{background:transparent}
+
+/* Image/placeholders */
+.profile-card{background:var(--glass);padding:18px;border-radius:14px;display:flex;align-items:center;gap:14px}
+.avatar{width:88px;height:88px;border-radius:10px;background:linear-gradient(180deg,#121212,#0a0a0a);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar-abstract{width:70%;height:70%}
+
+/* Sections */
+section{padding:64px 0;border-top:1px solid rgba(255,255,255,0.03)}
+h2{margin:0 0 18px;font-size:20px}
+p.lead{color:var(--muted);margin:0 0 18px}
+
+/* Projects grid */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:12px}
+.project .thumb{height:160px;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.project h3{margin:0;font-size:16px}
+.project p{margin:0;color:var(--muted);font-size:13px}
+.project .meta{display:flex;justify-content:space-between;align-items:center}
+
+/* Skills */
+.skills-grid{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);background:transparent;font-size:13px}
+
+/* Contact */
+footer{padding:36px 0;color:var(--muted);display:flex;flex-direction:column;gap:10px}
+.socials{display:flex;gap:14px;align-items:center}
+
+/* Modal (case study placeholder) */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal-card{width:min(900px,96%);background:#070707;padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+
+/* Responsive */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .projects{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .projects{grid-template-columns:1fr}
+  .wrap{padding:28px 18px}
+}
+
+/* small utilities */
+.muted{color:var(--muted)}
+a.icon-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  </style>
+</head>
+<body>
+  <div class="bg-anim" aria-hidden></div>  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="hero-title">Adarsh – Designer, Visual Thinker, and Pixel Mechanic.</h1>
+        <p class="hero-sub">I create bold, functional visuals blending art and logic.</p>
+        <div class="cta-row">
+          <a class="btn" href="#projects" id="see-work">
+            <!-- SVG: right arrow -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden focusable="false" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="M12 5l7 7-7 7" />
+            </svg>
+            <span>See My Work</span>
+          </a>
+          <a class="btn ghost" href="#contact">
+            <!-- SVG: mail -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M3 8.5l8.5 5L20 8.5"/></svg>
+            <span>Contact</span>
+          </a>
+        </div>
+        <p class="muted" style="margin-top:18px;font-size:13px">Minimal. Fast. Black & white. Easy to update.</p>
+      </div><aside class="profile-card" aria-label="Profile">
+    <div class="avatar" role="img" aria-hidden>
+      <!-- Replace this SVG with your portrait or abstract image -->
+      <svg class="avatar-abstract" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="90" height="90" rx="8" fill="#000"/>
+        <circle cx="35" cy="36" r="14" fill="none" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/>
+        <rect x="52" y="30" width="30" height="10" rx="3" fill="#fff" fill-opacity="0.04"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Adarsh</strong>
+      <div class="muted" style="font-size:13px">Designer • Visual Thinker</div>
+    </div>
+  </aside>
+</div>
+
+  </header>  <main>
+    <div class="wrap">
+      <!-- About -->
+      <section id="about">
+        <h2>About</h2>
+        <p class="lead">I’m Adarsh, a designer who loves turning ideas into visuals that hit. I mix science’s precision with art’s creativity to build sleek designs that speak without screaming. When I’m not designing, I’m learning tech that helps me design better.</p>
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="background:var(--glass);padding:12px;border-radius:12px;display:flex;align-items:center;gap:12px">
+              <div style="width:120px;height:84px;background:#111;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center">
+                <!-- Replace src with your photo. No selfies in mirrors. -->
+                <img src="/Picsart_25-11-12_10-53-27-449.jpg" alt="Adarsh portrait" style="width:100%;height:100%;object-fit:cover;display:block">
+              </div>
+              <div>
+                <div style="font-weight:600">Adarsh Pandey</div>
+                <div class="muted" style="font-size:13px"> Designer, Web Developer, visual artist.
+                 </div>
+              </div>
+            </div>
+          </div><div style="flex:2;min-width:240px">
+        <!-- Extra short bullets or quick list if needed -->
+        <ul style="margin:0 0 0 18px;color:var(--muted)">
+          <li>Focus: Brand identity, UI, and motion mockups</li>
+          <li>Approach: Problem first, pixels second</li>
+          <li>Availability: Select freelance work and collaborations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Selected Work</h2>
+    <p class="lead"></p>
+
+    <div class="projects" aria-live="polite">
+      <!-- Project 1 -->
+      <article class="project">
+        <div class="thumb">
+          <!-- image placeholder: replace with <img src="..."> -->
+          <img src="/thumbnail 1.jpg" alt="Project 1 mockup" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div>
+          <h3>brand posters</h3>
+          <p class="muted">Posters, posts, visual graphics.</p>
+        </div>
+        <div class="meta">
+          <a class="icon-link" href="#" data-case="1">View full case study</a>
+          <span class="muted">2025</span>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project">
+        <div class="thumb"><img src="/Picsart_25-11-12_11-17-41-653.png" alt="Project 2 mockup" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div>
+          <h3>Logos</h3>
+          <p class="muted">sleek minimal logos that strengthen brand identity </p>
+        </div>
+        <div class="meta"><a class="icon-link" href="#" data-case="2">View full case study</a><span class="muted">2024</span></div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project">
+        <div class="thumb"><img src="/Picsart_25-11-12_11-23-46-930.jpg" alt="Project 3 mockup" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div>
+          <h3>Packaging & mockups for apparel line</h3>
+          <p class="muted">Photoreal mockups and brand system.</p>
+        </div>
+        <div class="meta"><a class="icon-link" href="#" data-case="3">View full case study</a><span class="muted">2023</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills & Tools</h2>
+    <p class="lead">What I actually use. No resume fluff.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-items:start">
+      <div>
+        <strong>Design</strong>
+        <div class="skills-grid" style="margin-top:10px">
+          <span class="chip">Photoshop</span>
+          <span class="chip">Illustrator</span>
+          <span class="chip">Figma</span>
+        </div>
+      </div>
+      <div>
+        <strong>Motion</strong>
+        <div class="skills-grid" style="margin-top:10px">
+          <span class="chip">After Effects</span>
+          <span class="chip">Premiere Pro</span>
+        </div>
+      </div>
+      <div>
+        <strong>Dev</strong>
+        <div class="skills-grid" style="margin-top:10px">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">SPCK</span>
+        </div>
+      </div>
+      <div>
+        <strong>Other</strong>
+        <div class="skills-grid" style="margin-top:10px">
+          <span class="chip">Branding</span>
+          <span class="chip">Visual Strategy</span>
+          <span class="chip">Logo Systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="lead">Want to work together or see more?</p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+      <a class="icon-link" href="mailto:adarsh@email.com">📧 adarshpandey90921@gmail.com</a>
+      <a class="icon-link" href="https://www.instagram.com/nudgeworkstudios?igsh=ZDEwbGd1Z2g0Y3Rk">Instagram</a>
+    
+    </div>
+    <div style="margin-top:18px;color:var(--muted);font-size:13px">Designed & coded by Adarsh.</div>
+  </section>
+
+  <footer>
+    
+  </footer>
+</div>
+
+  </main>  <!-- Modal: Case Study (simple) -->  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <strong id="modal-title">Case Study</strong>
+        <button class="btn" id="modal-close" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+      <div id="modal-body" style="color:var(--muted);font-size:14px">nothing here yet.</div>
+    </div>
+  </div>  <script>
+    // Smooth scroll for CTA
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // Modal handling for "View full case study" links
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    document.querySelectorAll('[data-case]').forEach(link => {
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('data-case');
+        modalTitle.textContent = 'Case study — Project ' + id;
+        modalBody.innerHTML = '<p class="muted">Project ' + id + ' — nothing here yet.</p>';
+        modal.classList.add('open');
+      });
+    });
+    document.getElementById('modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('open') });
+
+    // small accessibility tweak: focus trap removed for brevity -- keep simple modal behaviour
+  </script></body>
+</html>
